@@ -5,8 +5,9 @@
  * // Ex: You get the target from the mouse event target 
  * // and search up the document for the required node
  * let ancestor = e.target;
- * ancestor = findAncestor(ancestor, (target) => {
-				    return target.getAttribute("data-value") !== null;
+ * e.stopPropagation();
+			ancestor = findAncestor(ancestor, (target) => {
+				    return target?.getAttribute("data-value") !== null;
 			});
  * ```
  * 
@@ -14,12 +15,12 @@
  * @param found function to determine if the passed node is the node you are looking for in the document
  * @returns 
  */
-const findAncestor = (target: Node, found: (target:Node | null) => boolean): ParentNode | null => {
-    if (target.parentNode === document) return null;
-    
-    if (found(target.parentNode)) return target.parentNode;
+const findAncestor = (target: Node, found: (target: HTMLElement | null) => boolean): HTMLElement | null => {
+	if (target.parentNode === document) return null;
 
-    return findAncestor(target.parentNode as Node, found);
-}
+	if (found(target.parentNode as HTMLElement)) return target.parentNode as HTMLElement;
 
-export default findAncestor
+	return findAncestor(target.parentNode as Node, found);
+};
+
+export default findAncestor;
