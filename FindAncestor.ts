@@ -17,9 +17,7 @@
 const findAncestor = (target: Node, found: (target:Node | null) => boolean): ParentNode | null => {
     if (target.parentNode === document) return null;
     
-    if (found(target.parentNode)) {
-        return target.parentNode;
-    }
+    if (found(target.parentNode)) return target.parentNode;
 
     return findAncestor(target.parentNode as Node, found);
 }
