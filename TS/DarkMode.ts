@@ -63,4 +63,4 @@ const changePreference = (preference: ColorPreference) => {
     loadDarkMode();
 };
 
-export { loadDarkMode, changePreference, getCurrentPreference }
+export { loadDarkMode, changePreference, getCurrentPreference };
